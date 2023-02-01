@@ -22,7 +22,7 @@ const NavItem = ({ to, text }) => (
   <li style={{ marginRight: '36px' }}>
     <NavLink
       exact
-      activeStyle={{ color: '#9b59b6' }}
+      activestyle={{ color: '#9b59b6' }}
       style={{ color: '#232323', textDecoration: 'none', fontFamily: 'Markazi Text', fontWeight: '500', fontSize: '20px' }}
       to={to}
     >
