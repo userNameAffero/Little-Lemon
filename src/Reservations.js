@@ -1,14 +1,13 @@
-import React from "react";
-import Nav from "./Nav";
-import BookingPage from "./BookingPage";
+import React from 'react';
+import BookingForm from './BookingForm.js';
+
 
 function Reservations() {
     return (
       <>
-      <Nav />
-      <BookingPage />
+    <p>Reservations</p>
       </>
     );
-}
+  }
 
 export default Reservations;

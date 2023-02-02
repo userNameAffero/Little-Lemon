@@ -6,9 +6,9 @@ function BookingPage() {
     return (
       <>
       <Nav></Nav>
-      <BookingForm></BookingForm>
+      <p>BOOKING PAGE1</p>
       </>
     );
   }
-  
-  export default BookingPage;
+
+export default BookingPage;

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import logo from './logo.svg';
 
 
+
 const Nav = () => (
   <nav style={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
     <img src={logo} alt="Logo" />
@@ -21,7 +22,6 @@ const Nav = () => (
 const NavItem = ({ to, text }) => (
   <li style={{ marginRight: '36px' }}>
     <NavLink
-      exact
       activestyle={{ color: '#9b59b6' }}
       style={{ color: '#232323', textDecoration: 'none', fontFamily: 'Markazi Text', fontWeight: '500', fontSize: '20px' }}
       to={to}
