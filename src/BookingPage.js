@@ -1,14 +1,12 @@
-import React from 'react';
-import BookingForm from './BookingForm.js';
-import Nav from './Nav.js';
+import React, { Router } from 'react';
+import BookingForm from './BookingForm';
+
 
 function BookingPage() {
-    return (
-      <>
-      <Nav></Nav>
-      <p>BOOKING PAGE1</p>
-      </>
-    );
-  }
+  return (
+    <BookingForm/>
+  );
+}
+
 
 export default BookingPage;

@@ -1,91 +1,68 @@
 import React, { useState, useEffect } from 'react';
-import { submitAPI } from './api';
-import { useNavigate } from 'react-router-dom';
+import { fetchAPI, submitAPI } from './Api';
 
-const BookingForm = ({ availableTimesData, dispatch }) => {
-  const [reservationDate, setReservationDate] = useState('');
-  const [reservationTime, setReservationTime] = useState('');
-  const [guests, setGuests] = useState('');
-  const [occasion, setOccasion] = useState('');
-  const [availableTimeOptions, setAvailableTimeOptions] = useState([]);
-  const navigate = useNavigate();
+const BookingForm = () => {
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+  const [guests, setGuests] = useState(null);
+  const [occasion, setOccasion] = useState(null);
+  const [times, setTimes] = useState([]);
 
   useEffect(() => {
-    if (reservationDate) {
-      dispatch({ type: 'UPDATE_TIMES', date: reservationDate });
+    if (date) {
+      setTimes(fetchAPI(date));
     }
-  }, [reservationDate, dispatch]);
+  }, [date]);
 
-  useEffect(() => {
-    if (availableTimesData && availableTimesData.then) {
-      availableTimesData.then((times) => {
-        if (times && times[reservationDate]) {
-          setAvailableTimeOptions(times[reservationDate]);
-        }
-      });
-    }
-  }, [availableTimesData, reservationDate]);
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
-    if (!reservationDate || !reservationTime || !guests || !occasion) {
-      return;
-    }
-    const data = { reservationDate, reservationTime, guests, occasion };
-    const reservationData = await submitAPI(data);
-    if (reservationData) {
-      setReservationTime(reservationData);
-      navigate('/reservation');
-    }
+    const formData = { date, time, guests, occasion };
+    submitAPI(formData);
   };
 
   return (
-    <form style={{ display: 'block' }}>
-      <div>
-        <label htmlFor="reservationDate">Date:</label>
-        <input
-          type="date"
-          id="reservationDate"
-          value={reservationDate}
-          onChange={(e) => setReservationDate(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="reservationTime">Time:</label>
-        <select
-          id="reservationTime"
-          value={reservationTime}
-          onChange={(e) => setReservationTime(e.target.value)}
-        >
-          <option value="" disabled>Select a time</option>
-          {availableTimeOptions.map((time) => (
-            <option value={time} key={time}>
-              {time}
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="date">
+        Date:
+        <input type="date" id="date" onChange={event => setDate(new Date(event.target.value))} />
+      </label>
+      <br />
+      <label htmlFor="time">
+        Time:
+        <select id="time" onChange={event => setTime(event.target.value)}>
+          <option value="">Select a time</option>
+          {times.map(t => (
+            <option key={t} value={t}>
+              {t}
             </option>
           ))}
         </select>
-      </div>
-      <div>
-        <label htmlFor="guests">Guests:</label>
-        <input
-          type="number"
-          id="guests"
-          value={guests}
-          onChange={(e) => setGuests(e.target.value)}
-/>
-</div>
-<div>
-<label htmlFor="occasion">Occasion:</label>
-<input
-type="text"
-id="occasion"
-value={occasion}
-onChange={(e) => setOccasion(e.target.value)}
-/>
-
-</div>
-<button type="submit" onClick={handleSubmit}>Submit</button>
-</form>
-);
+      </label>
+      <br />
+      <label htmlFor="guests">
+        Number of guests:
+        <select id="guests" onChange={event => setGuests(event.target.value)}>
+          <option value="">Select number of guests</option>
+          {Array.from({ length: 8 }, (_, i) => i + 1).map(n => (
+            <option key={n} value={n}>
+              {n}
+            </option>
+          ))}
+        </select>
+      </label>
+      <br />
+      <label htmlFor="occasion">
+        Occasion:
+        <select id="occasion" onChange={event => setOccasion(event.target.value)}>
+          <option value="">Select an occasion</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Anniversary">Anniversary</option>
+        </select>
+      </label>
+      <br />
+      <button type="submit">Submit reservation</button>
+    </form>
+  );
 };
+
 export default BookingForm;

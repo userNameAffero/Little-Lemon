@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Reservations() {
+function About() {
     return (
       <>
         <p>About Page</p>
@@ -9,4 +9,4 @@ function Reservations() {
     );
 }
 
-export default Reservations;
+export default About;
