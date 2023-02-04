@@ -3,9 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { fetchAPI, submitAPI } from './Api';
 import ConfirmedBooking from './ConfirmedBooking';
 
-
-
-
 const BookingForm = () => {
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
@@ -13,8 +10,7 @@ const BookingForm = () => {
   const [occasion, setOccasion] = useState(null);
   const [times, setTimes] = useState([]);
 
-
-
+  const [formValid, setFormValid] = useState(false);
 
   useEffect(() => {
     if (date) {
@@ -22,28 +18,37 @@ const BookingForm = () => {
     }
   }, [date]);
 
+  useEffect(() => {
+    setFormValid(date && time && guests);
+  }, [date, time, guests]);
 
-
-
-const handleSubmit = event => {
-  event.preventDefault();
-  const formData = { date, time, guests, occasion };
-  if (submitAPI(formData)) {
-    window.location.href = '/ConfirmedBooking';
-  }
-};
-
+  const handleSubmit = event => {
+    event.preventDefault();
+    const formData = { date, time, guests, occasion };
+    if (submitAPI(formData)) {
+      window.location.href = '/ConfirmedBooking';
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="date">
         Date:
-        <input type="date" id="date" onChange={event => setDate(new Date(event.target.value))} />
+        <input 
+          type="date" 
+          id="date" 
+          required
+          onChange={event => setDate(new Date(event.target.value))} 
+        />
       </label>
       <br />
       <label htmlFor="time">
         Time:
-        <select id="time" onChange={event => setTime(event.target.value)}>
+        <select 
+          id="time" 
+          required
+          onChange={event => setTime(event.target.value)}
+        >
           <option value="">Select a time</option>
           {times.map(t => (
             <option key={t} value={t}>
@@ -55,7 +60,11 @@ const handleSubmit = event => {
       <br />
       <label htmlFor="guests">
         Number of guests:
-        <select id="guests" onChange={event => setGuests(event.target.value)}>
+        <select 
+          id="guests" 
+          required
+          onChange={event => setGuests(event.target.value)}
+        >
           <option value="">Select number of guests</option>
           {Array.from({ length: 8 }, (_, i) => i + 1).map(n => (
             <option key={n} value={n}>
@@ -74,12 +83,9 @@ const handleSubmit = event => {
         </select>
       </label>
       <br />
-      <button type="submit">Submit reservation</button>
+      <button type="submit" aria-label="On Click" disabled={!formValid}>Submit reservation</button>
     </form>
-    
   );
 };
-
-
 
 export default BookingForm;
