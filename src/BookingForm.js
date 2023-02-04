@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { fetchAPI, submitAPI } from './Api';
+import ConfirmedBooking from './ConfirmedBooking';
+
+
+
 
 const BookingForm = () => {
   const [date, setDate] = useState(null);
@@ -8,17 +13,26 @@ const BookingForm = () => {
   const [occasion, setOccasion] = useState(null);
   const [times, setTimes] = useState([]);
 
+
+
+
   useEffect(() => {
     if (date) {
       setTimes(fetchAPI(date));
     }
   }, [date]);
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    const formData = { date, time, guests, occasion };
-    submitAPI(formData);
-  };
+
+
+
+const handleSubmit = event => {
+  event.preventDefault();
+  const formData = { date, time, guests, occasion };
+  if (submitAPI(formData)) {
+    window.location.href = '/ConfirmedBooking';
+  }
+};
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -62,7 +76,10 @@ const BookingForm = () => {
       <br />
       <button type="submit">Submit reservation</button>
     </form>
+    
   );
 };
+
+
 
 export default BookingForm;
