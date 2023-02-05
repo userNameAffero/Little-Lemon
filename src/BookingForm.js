@@ -31,8 +31,9 @@ const BookingForm = () => {
   };
 
   return (
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="date">
+      <label htmlFor="date" style={{ fontFamily: 'Karla'}}>
         Date:
         <input 
           type="date" 
@@ -42,9 +43,9 @@ const BookingForm = () => {
         />
       </label>
       <br />
-      <label htmlFor="time">
+      <label htmlFor="time" style={{ fontFamily: 'Karla'}}>
         Time:
-        <select 
+        <select  
           id="time" 
           required
           onChange={event => setTime(event.target.value)}
@@ -58,7 +59,7 @@ const BookingForm = () => {
         </select>
       </label>
       <br />
-      <label htmlFor="guests">
+      <label htmlFor="guests" style={{ fontFamily: 'Karla'}}>
         Number of guests:
         <select 
           id="guests" 
@@ -74,7 +75,7 @@ const BookingForm = () => {
         </select>
       </label>
       <br />
-      <label htmlFor="occasion">
+      <label htmlFor="occasion" style={{ fontFamily: 'Karla'}}>
         Occasion:
         <select id="occasion" onChange={event => setOccasion(event.target.value)}>
           <option value="">Select an occasion</option>
@@ -85,6 +86,7 @@ const BookingForm = () => {
       <br />
       <button type="submit" aria-label="On Click" disabled={!formValid}>Submit reservation</button>
     </form>
+    </div>
   );
 };
 
