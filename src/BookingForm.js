@@ -39,7 +39,7 @@ const BookingForm = () => {
           type="date"
           id="date"
           required
-          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
+          style={{ display: 'block', margin: '10px 0', minWidth: '280px', padding: '12px', borderRadius: '8px' }}
           onChange={event => setDate(new Date(event.target.value))}
         />
       </label>
@@ -49,7 +49,7 @@ const BookingForm = () => {
         <select
           id="time"
           required
-          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
+          style={{ display: 'block', margin: '10px 0', minWidth: '280px', padding: '12px', borderRadius: '8px' }}
           onChange={event => setTime(event.target.value)}
         >
           <option value="">Select a time</option>
@@ -66,7 +66,7 @@ const BookingForm = () => {
         <select
           id="guests"
           required
-          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
+          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px', borderRadius: '8px', minWidth: '280px' }}
           onChange={event => setGuests(event.target.value)}
         >
           <option value="">Select number of guests</option>
@@ -80,14 +80,14 @@ const BookingForm = () => {
       <br />
       <label htmlFor="occasion" style={{ fontFamily: 'Karla', color: '#ffffff' }}>
         Occasion
-        <select id="occasion" style={{ display: 'block', margin: '10px 0', width: '100%' }} onChange={event => setOccasion(event.target.value)}>
+        <select id="occasion" style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px', borderRadius: '8px', minWidth: '280px' }} onChange={event => setOccasion(event.target.value)}>
           <option value="">Select an occasion</option>
           <option value="Birthday">Birthday</option>
           <option value="Anniversary">Anniversary</option>
         </select>
       </label>
       <br />
-      <button type="submit" aria-label="On Click" disabled={!formValid}>Submit reservation</button>
+      <button type="submit" style={{ minWidth: '400px', minHeight: '28px', padding: '12px', borderRadius: '8px', backgroundColor: formValid ? '#F4CE14' : '' }} aria-label="On Click" disabled={!formValid}>Submit reservation</button>
     </form>
     </div>
   );
