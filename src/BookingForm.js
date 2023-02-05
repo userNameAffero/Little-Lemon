@@ -31,23 +31,25 @@ const BookingForm = () => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: '#495E57', padding: '80px' }}>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="date" style={{ fontFamily: 'Karla'}}>
-        Date:
-        <input 
-          type="date" 
-          id="date" 
+      <label htmlFor="date" style={{ fontFamily: 'Karla', color: '#ffffff' }}>
+        Date
+        <input
+          type="date"
+          id="date"
           required
-          onChange={event => setDate(new Date(event.target.value))} 
+          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
+          onChange={event => setDate(new Date(event.target.value))}
         />
       </label>
       <br />
-      <label htmlFor="time" style={{ fontFamily: 'Karla'}}>
-        Time:
-        <select  
-          id="time" 
+      <label htmlFor="time" style={{ fontFamily: 'Karla', color: '#ffffff' }}>
+        Time
+        <select
+          id="time"
           required
+          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
           onChange={event => setTime(event.target.value)}
         >
           <option value="">Select a time</option>
@@ -59,11 +61,12 @@ const BookingForm = () => {
         </select>
       </label>
       <br />
-      <label htmlFor="guests" style={{ fontFamily: 'Karla'}}>
-        Number of guests:
-        <select 
-          id="guests" 
+      <label htmlFor="guests" style={{ fontFamily: 'Karla', color: '#ffffff' }}>
+        Number of guests
+        <select
+          id="guests"
           required
+          style={{ display: 'block', margin: '10px 0', width: '100%', padding: '12px' }}
           onChange={event => setGuests(event.target.value)}
         >
           <option value="">Select number of guests</option>
@@ -75,9 +78,9 @@ const BookingForm = () => {
         </select>
       </label>
       <br />
-      <label htmlFor="occasion" style={{ fontFamily: 'Karla'}}>
-        Occasion:
-        <select id="occasion" onChange={event => setOccasion(event.target.value)}>
+      <label htmlFor="occasion" style={{ fontFamily: 'Karla', color: '#ffffff' }}>
+        Occasion
+        <select id="occasion" style={{ display: 'block', margin: '10px 0', width: '100%' }} onChange={event => setOccasion(event.target.value)}>
           <option value="">Select an occasion</option>
           <option value="Birthday">Birthday</option>
           <option value="Anniversary">Anniversary</option>

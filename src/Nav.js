@@ -22,19 +22,19 @@ function Nav() {
                     <img src={logo} alt="logo" />
                     <div style={{ margin: '10px' }}>
                         <NavLink to="/" style={({ isActive }) => ({ 
-                            color: isActive ? '495E57' : '495E57', textDecoration: isActive ? 'underline' : 'none' })}>
+                            color: isActive ? '#495E57' : '#495E57', textDecoration: isActive ? 'underline' : 'none' })}>
                             Home
                         </NavLink>
                     </div>
                     <div style={{ margin: '10px' }}>
                         <NavLink to="/About" style={({ isActive }) => ({ 
-                            color: isActive ? '495E57' : '495E57', textDecoration: isActive ? 'underline' : 'none' })}>
+                            color: isActive ? '#495E57' : '#495E57', textDecoration: isActive ? 'underline' : 'none' })}>
                             About
                         </NavLink>
                     </div>
                     <div style={{ margin: '10px' }}>
                         <NavLink to="/BookingPage" style={({ isActive }) => ({ 
-                            color: isActive ? '495E57' : '495E57', textDecoration: isActive ? 'underline' : 'none'  })}>
+                            color: isActive ? '#495E57' : '#495E57', textDecoration: isActive ? 'underline' : 'none'  })}>
                             Reservations
                         </NavLink>
                     </div>
